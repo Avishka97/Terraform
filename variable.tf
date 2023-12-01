@@ -6,5 +6,6 @@ variable "prefix" {
 }
 
 variable "location" {
+  type = string
   description = "The Azure Region in which all resources in this example should be created."
 }
