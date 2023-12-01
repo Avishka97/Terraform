@@ -2,7 +2,13 @@
 # SPDX-License-Identifier: MPL-2.0
 
 variable "prefix" {
+  type = string
   description = "The prefix which should be used for all resources in this example"
+}
+
+variable "resourcegroup" {
+  type = string
+  description = "The resources group in this example"
 }
 
 variable "location" {
