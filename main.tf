@@ -79,7 +79,7 @@ resource "azurerm_windows_virtual_machine" "main" {
   admin_username      = "adminuser"
   admin_password      = "P@ssw0rd1234!"
   network_interface_ids = [
-    azurerm_network_interface.main.id,
+    azurerm_network_interface.main.id,azurerm_network_interface.internal.id,
   ]
 
   source_image_reference {
