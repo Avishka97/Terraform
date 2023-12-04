@@ -3,6 +3,7 @@ Describe 'Terraform Blog Demo Tests' {
         #Parse plan file and pull out provided variables
         $Plan = terraform show -json $env:jsonPath | ConvertFrom-Json
         $Variables = $Plan.Variables
+        Write-Output "Extracted Variables: $Variables"
     }
 
  Context 'Unit' -Tag Unit {
