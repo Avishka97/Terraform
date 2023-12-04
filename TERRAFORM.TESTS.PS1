@@ -7,11 +7,11 @@ Describe 'Terraform Blog Demo Tests' {
 
  Context 'Unit' -Tag Unit {
         BeforeAll {
-            $ResourceGroupAddress  = 'azurerm_resource_group.rg'
-            $VirtualNetworkAddress = 'azurerm_virtual_network.vnet'
-            $VmsSubnetAddress      = 'azurerm_subnet.vms_subnet'
-            $VirtualMachineAddress = 'azurerm_virtual_machine.vm'
-            $VmNicAddress          = 'azurerm_network_interface.vm_nic'
+            $ResourceGroupAddress  = 'azurerm_resource_group.main'
+            $VirtualNetworkAddress = 'azurerm_virtual_network.main'
+            $VmsSubnetAddress      = 'azurerm_subnet.internal'
+            $VirtualMachineAddress = 'azurerm_virtual_machine.main'
+            $VmNicAddress          = 'azurerm_network_interface.main'
 
             $ResourceGroupPlan  = ($Plan.resource_changes | Where-Object { $_.address -eq $ResourceGroupAddress })[0]
             $VirtualNetworkPlan = ($Plan.resource_changes | Where-Object { $_.address -eq $VirtualNetworkAddress })[0]
