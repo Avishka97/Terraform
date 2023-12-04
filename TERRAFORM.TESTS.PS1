@@ -1,15 +1,7 @@
 Describe 'Terraform Blog Demo Tests' {
     BeforeAll -ErrorAction Stop {
-        Write-Host "Test Case: Blog Demo" -ForegroundColor Magenta
-        Write-Host 'Initializing...'
-        terraform init
-        Write-Host 'Validating...'
-        terraform validate
-        Write-Host 'Planning...'
-        (terraform plan -out terraform.plan)
-
         #Parse plan file and pull out provided variables
-        $Plan = terraform show -json terraform.plan | ConvertFrom-Json
+        $Plan = terraform show -json $env:jsonPath | ConvertFrom-Json
         $Variables = $Plan.Variables
     }
 
