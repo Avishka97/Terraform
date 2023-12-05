@@ -1,7 +1,7 @@
 Describe 'Terraform Blog Demo Tests' {
     BeforeAll -ErrorAction Stop {
     # Path to the terraform plan file
-    $planFilePath = Join-Path -Path "$(System.DefaultWorkingDirectory)" -ChildPath "terraform.plan"
+    $planFilePath = Join-Path -Path $env:SYSTEM_DEFAULTWORKINGDIRECTORY -ChildPath "terraform.plan"
 
     # Check if the file exists before attempting to parse it
     if (Test-Path -Path $planFilePath) {
