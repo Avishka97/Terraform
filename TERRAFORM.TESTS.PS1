@@ -1,6 +1,6 @@
 Describe 'Terraform Blog Demo Tests' {
     BeforeAll -ErrorAction Stop {
-    $artifactDownloadPath = "$(System.ArtifactsDirectory)/drop" # Replace 'artifactName' with the actual name of your artifact
+    $artifactDownloadPath = "$env:SYSTEM_ARTIFACTSDIRECTORY/drop" # Replace 'artifactName' with the actual name of your artifact
     $artifactFilePath = Join-Path -Path $artifactDownloadPath -ChildPath "terraform.plan"
 
     # Check if the file exists before attempting to parse it
