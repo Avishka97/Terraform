@@ -1,22 +1,23 @@
 Describe 'Terraform Blog Demo Tests' {
     BeforeAll -ErrorAction Stop {
-    # Path to the terraform plan file
-    $planFilePath = Join-Path -Path $env:SYSTEM_DEFAULTWORKINGDIRECTORY -ChildPath "terraform.plan"
+    $artifactDownloadPath = "$(System.ArtifactsDirectory)/drop" # Replace 'artifactName' with the actual name of your artifact
+    $artifactFilePath = Join-Path -Path $artifactDownloadPath -ChildPath "terraform.plan"
 
     # Check if the file exists before attempting to parse it
-    if (Test-Path -Path $planFilePath) {
+    if (Test-Path -Path $artifactFilePath) {
         try {
             # Parse plan file and pull out provided variables
-            $Plan = terraform show -json $planFilePath | ConvertFrom-Json
+            $Plan = terraform show -json $artifactFilePath | ConvertFrom-Json
             $Variables = $Plan.Variables
             Write-Output "Extracted Variables: $Variables"
         } catch {
             Write-Error "Failed to parse the Terraform plan file."
         }
     } else {
-        Write-Error "Terraform plan file not found at $planFilePath."
+        Write-Error "Terraform plan file not found at $artifactFilePath."
     }
 }
+
 
  Context 'Unit' -Tag Unit {
         BeforeAll {
