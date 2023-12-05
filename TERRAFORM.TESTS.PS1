@@ -1,10 +1,14 @@
 Describe 'Terraform Blog Demo Tests' {
     BeforeAll -ErrorAction Stop {
-        #Parse plan file and pull out provided variables
-        $Plan = terraform show -json terraform.plan | ConvertFrom-Json
-        $Variables = $Plan.Variables
-        Write-Output "Extracted Variables: $Variables"
-    }
+    # Path to the terraform plan file
+    $planFilePath = Join-Path -Path $env:System_DefaultWorkingDirectory -ChildPath "terraform.plan"
+
+    # Parse plan file and pull out provided variables
+    $Plan = terraform show -json $planFilePath | ConvertFrom-Json
+    $Variables = $Plan.Variables
+    Write-Output "Extracted Variables: $Variables"
+}
+
 
  Context 'Unit' -Tag Unit {
         BeforeAll {
