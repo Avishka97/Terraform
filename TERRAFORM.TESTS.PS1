@@ -1,7 +1,7 @@
 Describe 'Terraform Blog Demo Tests' {
     BeforeAll -ErrorAction Stop {
         #Parse plan file and pull out provided variables
-        $Plan = terraform show -json $(System.DefaultWorkingDirectory)\terraform.plan | ConvertFrom-Json
+        $Plan = terraform show -json /home/vsts/work/1/s\\terraform.plan | ConvertFrom-Json
         $Variables = $Plan.Variables
         Write-Output "Extracted Variables: $Variables"
     }
