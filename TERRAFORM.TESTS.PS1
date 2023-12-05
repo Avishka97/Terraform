@@ -3,11 +3,21 @@ Describe 'Terraform Blog Demo Tests' {
     # Path to the terraform plan file
     $planFilePath = Join-Path -Path $env:System_DefaultWorkingDirectory -ChildPath "terraform.plan"
 
-    # Parse plan file and pull out provided variables
-    $Plan = terraform show -json $planFilePath | ConvertFrom-Json
-    $Variables = $Plan.Variables
-    Write-Output "Extracted Variables: $Variables"
+    # Check if the file exists before attempting to parse it
+    if (Test-Path -Path $planFilePath) {
+        try {
+            # Parse plan file and pull out provided variables
+            $Plan = terraform show -json $planFilePath | ConvertFrom-Json
+            $Variables = $Plan.Variables
+            Write-Output "Extracted Variables: $Variables"
+        } catch {
+            Write-Error "Failed to parse the Terraform plan file."
+        }
+    } else {
+        Write-Error "Terraform plan file not found at $planFilePath."
+    }
 }
+
 
 
  Context 'Unit' -Tag Unit {
