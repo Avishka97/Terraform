@@ -25,12 +25,12 @@ resource "azurerm_public_ip" "pip" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "${var.vm1_name}_nic1"
+  name                = "${var.vm1_name}-nic1"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
 
   ip_configuration {
-    name                          = ${var.vm1_name}_nic1_public
+    name                          = ${var.vm1_name}-nic1-public
     subnet_id                     = azurerm_subnet.Terraform_subnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.pip.id
@@ -38,12 +38,12 @@ resource "azurerm_network_interface" "main" {
 }
 
 resource "azurerm_network_interface" "internal" {
-  name                = "${var.vm1_name}_nic2"
+  name                = "${var.vm1_name}-nic2"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
 
   ip_configuration {
-    name                          = ${var.vm1_name}_nic2_internal
+    name                          = ${var.vm1_name}-nic2-internal
     subnet_id                     = azurerm_subnet.Terraform_subnet.id
     private_ip_address_allocation = "Dynamic"
   }
