@@ -126,5 +126,10 @@ Describe 'Terraform Blog Demo Tests' {
         #EndRegion NIC Tests
 
     }
+$config = New-PesterConfiguration
+$config.Run.Path = "$(System.DefaultWorkingDirectory)/*"
+$config.CodeCoverage.Enabled = $true
+Invoke-Pester -Configuration $config
+
 
 }
