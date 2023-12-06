@@ -40,8 +40,8 @@ Describe 'Terraform Blog Demo Tests' {
         }
         
         It 'Will create resource_group with correct name' {
-            Write-Output "ResourceGroupPlan : $ResourceGroupPlan.change.after.name"
-            Write-Output "Variables: $Variables.resource_group_name.value"
+            Write-Host "ResourceGroupPlan : $ResourceGroupPlan.change.after.name"
+            Write-Host "Variables: $Variables.resource_group_name.value"
             $ResourceGroupPlan.change.after.name | Should -Be $Variables.resource_group_name.value
         }
         
