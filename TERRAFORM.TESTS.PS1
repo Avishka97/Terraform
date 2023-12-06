@@ -35,11 +35,13 @@ Describe 'Terraform Blog Demo Tests' {
         }
 
          #Region Resource Group Tests
-        It 'Will create resource_group' {
+        It 'Will create resource_group' {            
             $ResourceGroupPlan.change.actions[0] | Should -Be 'create'
         }
         
         It 'Will create resource_group with correct name' {
+            Write-Output "ResourceGroupPlan : $ResourceGroupPlan.change.after.name"
+            Write-Output "Variables: $Variables.resource_group_name.value"
             $ResourceGroupPlan.change.after.name | Should -Be $Variables.resource_group_name.value
         }
         
