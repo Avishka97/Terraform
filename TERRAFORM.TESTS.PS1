@@ -42,6 +42,11 @@ Describe 'Terraform Blog Demo Tests' {
         It 'Will create resource_group with correct name' {
             Write-Host "ResourceGroupPlan : $ResourceGroupPlan.change.after.name"
             Write-Host "Variables: $Variables.resource_group_name.value"
+
+            # Explicitly show the types of both values
+            Write-Host "Type of ResourceGroupPlan: $([type]::NameOf($ResourceGroupPlan.change.after.name))"
+            Write-Host "Type of Variables: $([type]::NameOf($Variables.resource_group_name.value))"
+
             $ResourceGroupPlan.change.after.name | Should -Be $Variables.resource_group_name.value
         }
         
