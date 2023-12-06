@@ -1,7 +1,6 @@
 $config = New-PesterConfiguration
 $config.Run.Path = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY"
 $config.CodeCoverage.Enabled = $true
-Invoke-Pester -Configuration $config
 
 Describe 'Terraform Blog Demo Tests' {
     BeforeAll -ErrorAction Stop {
