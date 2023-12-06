@@ -46,3 +46,9 @@ variable "admin_password" {
   description = "Password must meet Azure complexity requirements"
   sensitive   = true
 }
+
+variable "vm1_name" {
+  type        = string
+  description = "Declare name of vm"
+}
+
