@@ -127,7 +127,7 @@ Describe 'Terraform Blog Demo Tests' {
 
     }
 $config = New-PesterConfiguration
-$config.Run.Path = "$(System.DefaultWorkingDirectory)/*"
+$config.Run.Path = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY"
 $config.CodeCoverage.Enabled = $true
 Invoke-Pester -Configuration $config
 
