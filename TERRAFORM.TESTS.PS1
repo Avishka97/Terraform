@@ -46,6 +46,11 @@ Describe 'Terraform Blog Demo Tests' {
             # Explicitly show the types of both values
             Write-Host "Type of ResourceGroupPlan: $([type]::NameOf($ResourceGroupPlan.change.after.name))"
             Write-Host "Type of Variables: $([type]::NameOf($Variables.resource_group_name.value))"
+            
+            Write-Host "This is a test message."
+            $OutputFilePath = "$(System.DefaultWorkingDirectory)/output.txt"
+            Write-Host "Writing output to: $OutputFilePath"
+            "This is a test message." | Out-File -FilePath $OutputFilePath
 
             $ResourceGroupPlan.change.after.name | Should -Be $Variables.resource_group_name.value
         }
