@@ -24,7 +24,7 @@ Describe 'Terraform Blog Demo Tests' {
             $ResourceGroupAddress  = 'azurerm_resource_group.main'
             $VirtualNetworkAddress = 'azurerm_virtual_network.main'
             $VmsSubnetAddress      = 'azurerm_subnet.internal'
-            $VirtualMachineAddress = 'azurerm_virtual_machine.main'
+            $VirtualMachineAddress = 'azurerm_windows_virtual_machine.main'
             $VmNicAddress          = 'azurerm_network_interface.main'
 
             $ResourceGroupPlan  = ($Plan.resource_changes | Where-Object { $_.address -eq $ResourceGroupAddress })[0]
