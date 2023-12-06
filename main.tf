@@ -31,7 +31,7 @@ resource "azurerm_network_interface" "main" {
 
   ip_configuration {
     name                          = "${var.vm1_name}-nic1-public"
-    subnet_id                     = azurerm_subnet.Terraform_subnet.id
+    subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.pip.id
   }
@@ -44,7 +44,7 @@ resource "azurerm_network_interface" "internal" {
 
   ip_configuration {
     name                          = "${var.vm1_name}-nic2-internal"
-    subnet_id                     = azurerm_subnet.Terraform_subnet.id
+    subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
   }
 }
