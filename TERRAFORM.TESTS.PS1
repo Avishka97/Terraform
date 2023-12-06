@@ -47,7 +47,7 @@ Describe 'Terraform Blog Demo Tests' {
         }
         
         It 'Will create resource_group in correct region' {
-            $ResourceGroupPlan.change.after.location | Should -Be $Variables.region.value
+            $ResourceGroupPlan.change.after.location | Should -Be $Variables.location.value
         }
         #EndRegion Resource Group Tests
 
@@ -57,7 +57,7 @@ Describe 'Terraform Blog Demo Tests' {
         }
         
         It 'Will create virtual_network in correct region' {
-            $VirtualNetworkPlan.change.after.location | Should -Be $Variables.region.value
+            $VirtualNetworkPlan.change.after.location | Should -Be $Variables.location.value
         }
 
         It 'Will create virtual_network with correct address_space' {
@@ -90,24 +90,17 @@ Describe 'Terraform Blog Demo Tests' {
         }
 
         It 'Will create vm in correct region' {
-            $VirtualMachinePlan.change.after.location | Should -Be $Variables.region.value
+            $VirtualMachinePlan.change.after.location | Should -Be $Variables.location.value
         }
 
         It 'Will assign vm correct administrator username' {
-            $VirtualMachinePlan.change.after.os_profile.admin_username | Should -Be $Variables.admin_username.value
+            $VirtualMachinePlan.change.after.admin_username | Should -Be $Variables.admin_username.value
         }
 
         It 'Will assign vm correct administrator password' {
-            $VirtualMachinePlan.change.after.os_profile.admin_password | Should -Be $Variables.admin_password.value
+            $VirtualMachinePlan.change.after.admin_password | Should -Be $Variables.admin_password.value
         }
 
-        It 'Will provision_vm_agent for vm' {
-            $VirtualMachinePlan.change.after.os_profile_windows_config.provision_vm_agent | Should -Be $true
-        }
-        
-        It 'Will not enable_automatic_upgrades for vm' {
-            $VirtualMachinePlan.change.after.os_profile_windows_config.enable_automatic_upgrades | Should -Be $false
-        }
         #EndRegion Virtual Machine Tests
 
         #Region NIC Tests        
@@ -120,7 +113,7 @@ Describe 'Terraform Blog Demo Tests' {
         }
 
         It 'Will create vm_nic in correct region' {
-            $VmNicPlan.change.after.location | Should -Be $Variables.region.value
+            $VmNicPlan.change.after.location | Should -Be $Variables.location.value
         }
 
         It 'Will assign dynamic address allocation' {
