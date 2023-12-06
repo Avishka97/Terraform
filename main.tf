@@ -1,20 +1,20 @@
 resource "azurerm_resource_group" "main" {
-  name     = "${var.prefix}-resourcegroup"
+  name     = var.resource_group_name
   location = var.location
 }
 
 resource "azurerm_virtual_network" "main" {
-  name                = "${var.prefix}-network"
-  address_space       = ["10.0.0.0/16"]
+  name                = "Terraform-virtualnetwork"
+  address_space       = var.vnet.address_space
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 }
 
 resource "azurerm_subnet" "internal" {
-  name                 = "internal"
+  name                 = var.subnet.vms.subnet_name
   resource_group_name  = azurerm_resource_group.main.name
   virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes     = ["10.0.2.0/24"]
+  address_prefixes     = var.subnet.vms.address_prefixes
 }
 
 resource "azurerm_public_ip" "pip" {
@@ -25,26 +25,26 @@ resource "azurerm_public_ip" "pip" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "${var.prefix}-nic1"
+  name                = "${var.vm1_name}_nic1"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
 
   ip_configuration {
-    name                          = "primary"
-    subnet_id                     = azurerm_subnet.internal.id
+    name                          = ${var.vm1_name}_nic1_public
+    subnet_id                     = azurerm_subnet.Terraform_subnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.pip.id
   }
 }
 
 resource "azurerm_network_interface" "internal" {
-  name                = "${var.prefix}-nic2"
+  name                = "${var.vm1_name}_nic2"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
 
   ip_configuration {
-    name                          = "internal"
-    subnet_id                     = azurerm_subnet.internal.id
+    name                          = ${var.vm1_name}_nic2_internal
+    subnet_id                     = azurerm_subnet.Terraform_subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -72,12 +72,12 @@ resource "azurerm_network_interface_security_group_association" "main" {
 }
 
 resource "azurerm_windows_virtual_machine" "main" {
-  name                = "${var.prefix}-vm"
+  name                = var.vm1_name
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   size                = "Standard_B2s"
-  admin_username      = "adminuser"
-  admin_password      = "P@ssw0rd1234!"
+  admin_username      = var.admin_username
+  admin_password      = var.admin_password
   network_interface_ids = [
     azurerm_network_interface.main.id,azurerm_network_interface.internal.id,
   ]
