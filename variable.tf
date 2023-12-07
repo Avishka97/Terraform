@@ -22,9 +22,10 @@ variable "resource_group_name" {
 }
 
 variable "vnet" {
-  type = object({
+  type = map(object({
+    vnet_name = string
     address_space = list(string)
-  })
+  }))
 }
 
 variable "subnet" {
