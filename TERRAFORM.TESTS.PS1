@@ -1,4 +1,4 @@
-Pester Unit test Script
+#Pester Unit test Script
 
 Describe 'Terraform Blog Demo Tests' -Tag 'unittest' {
     BeforeAll -ErrorAction Stop {
@@ -134,7 +134,7 @@ Describe 'Terraform Blog Demo Tests' -Tag 'unittest' {
 
 
 
-Pester Integration Test Script
+#Pester Integration Test Script
 
 Describe 'Terraform Blog Demo Tests' -Tag 'integrationtest' {
     BeforeAll -ErrorAction Stop {
