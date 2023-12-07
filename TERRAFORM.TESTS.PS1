@@ -1,3 +1,4 @@
+$config.CodeCoverage.Enabled = $true
 Describe 'Terraform Blog Demo Tests' {
     BeforeAll -ErrorAction Stop {
     $artifactDownloadPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY" # Replace 'artifactName' with the actual name of your artifact
