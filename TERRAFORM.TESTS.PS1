@@ -165,6 +165,7 @@ Describe 'Terraform Blog Demo Tests' -Tag 'integrationtest' {
             $securePassword = ConvertTo-SecureString -String $env:ARM_CLIENT_SECRET -AsPlainText -Force
             $credential = New-Object -TypeName PSCredential -ArgumentList ($env:ARM_CLIENT_ID, $securePassword)
             Connect-AzAccount -Credential $credential -TenantId $env:ARM_TENANT_ID -ServicePrincipal
+          
         }
 
         # Integration tests for checking resource existence and properties
