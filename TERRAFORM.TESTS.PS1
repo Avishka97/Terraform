@@ -184,7 +184,7 @@ Describe 'Terraform Blog Demo Tests' -Tag 'integrationtest' {
         }
 
         It 'Will create and exist virtual_machine' {
-            $virtualMachine = Get-AzVM -ResourceGroupName $Variables.resource_group_name.value -Name $Variables.vm1_name.value.name -ErrorAction SilentlyContinue
+            $virtualMachine = Get-AzVM -ResourceGroupName $Variables.resource_group_name.value -Name $Variables.vm1_name.value -ErrorAction SilentlyContinue
             $virtualMachine | Should -Not -Be $null
         }
         
