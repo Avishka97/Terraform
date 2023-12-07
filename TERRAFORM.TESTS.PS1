@@ -1,3 +1,9 @@
+$config = New-PesterConfiguration
+$config.Run.Path = "$(System.DefaultWorkingDirectory)/TERRAFORM.TESTS.PS1"
+$config.CodeCoverage.Enabled = $true
+$config.Output.Verbosity = "Detailed"
+Invoke-Pester -Configuration $config
+
 Describe 'Terraform Blog Demo Tests' {
     BeforeAll -ErrorAction Stop {
     $artifactDownloadPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY" # Replace 'artifactName' with the actual name of your artifact
