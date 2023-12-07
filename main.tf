@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "main" {
 }
 
 resource "azurerm_virtual_network" "main" {
-  name                = "Terraform-virtualnetwork"
+  name                = var.vnet.vnet_name
   address_space       = var.vnet.address_space
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
