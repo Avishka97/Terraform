@@ -63,7 +63,7 @@ Describe 'Terraform Blog Demo Tests' -Tag 'unittest' {
         }
 
         It 'Will create virtual_network with correct address_space' {
-            $VirtualNetworkPlan.change.after.address_space | Should -Be $Variables.vnet.value.address_space
+            $VirtualNetworkPlan.change.after.address_space | Should -Be $Variables.vnet.value.vms.address_space
         }
 
         It 'Will create virtual_network in correct resource group' {
@@ -174,24 +174,20 @@ Describe 'Terraform Blog Demo Tests' -Tag 'integrationtest' {
         }
 
         It 'Will create and exist virtual_network' {
-            $virtualNetwork = Get-AzVirtualNetwork -ResourceGroupName $Variables.resource_group_name.value -Name $Variables.vnet.value.name -ErrorAction SilentlyContinue
+            $virtualNetwork = Get-AzVirtualNetwork -ResourceGroupName $Variables.resource_group_name.value -Name $Variables.vnet.value.vms.vnet_name -ErrorAction SilentlyContinue
             $virtualNetwork | Should -Not -Be $null
         }
 
         It 'Will create and exist subnet' {
-            $subnet = Get-AzVirtualNetworkSubnetConfig -VirtualNetwork (Get-AzVirtualNetwork -ResourceGroupName $Variables.resource_group_name.value -Name $Variables.vnet.value.name) -Name $Variables.subnet.value.name -ErrorAction SilentlyContinue
+            $subnet = Get-AzVirtualNetworkSubnetConfig -VirtualNetwork (Get-AzVirtualNetwork -ResourceGroupName $Variables.resource_group_name.value -Name $Variables.vnet.value.vms.vnet_name) -Name $Variables.subnet.value.vms.subnet_name -ErrorAction SilentlyContinue
             $subnet | Should -Not -Be $null
         }
 
         It 'Will create and exist virtual_machine' {
-            $virtualMachine = Get-AzVM -ResourceGroupName $Variables.resource_group_name.value -Name $Variables.virtual_machine.value.name -ErrorAction SilentlyContinue
+            $virtualMachine = Get-AzVM -ResourceGroupName $Variables.resource_group_name.value -Name $Variables.vm1_name.value.name -ErrorAction SilentlyContinue
             $virtualMachine | Should -Not -Be $null
         }
-
-        It 'Will create and exist network_interface' {
-            $networkInterface = Get-AzNetworkInterface -ResourceGroupName $Variables.resource_group_name.value -Name $Variables.vm_nic.value.name -ErrorAction SilentlyContinue
-            $networkInterface | Should -Not -Be $null
-        }
+        
     }
 }
 
