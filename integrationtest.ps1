@@ -1,4 +1,4 @@
-Describe 'Terraform Blog Demo Tests' {
+Describe 'Terraform Blog Demo Tests' -Tag 'integrationtest' {
     BeforeAll -ErrorAction Stop {
         $artifactDownloadPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY"
         $artifactFilePath = Join-Path -Path $artifactDownloadPath -ChildPath "terraform.plan"
